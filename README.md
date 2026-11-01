@@ -1,15 +1,15 @@
 # Supernova Microwave Games 官网首版
 
-> **Owner**：用户（工作室所有者）  
-> **状态**：Astro 本地原型已搭建，待用户体验与内容验收  
-> **适用范围**：`web/` 内的工作室官网首版；该目录目前被元仓忽略，计划单独建仓为 `SupernovaMicrowaveGames.Website`  
+> **Owner**：用户（工作室所有者）
+> **状态**：Astro 静态站已搭建，GitHub Pages 自动部署工作流已配置
+> **适用范围**：`web/` 内的工作室官网首版；该目录目前被元仓忽略，计划单独建仓为 `SupernovaMicrowaveGames.Website`
 > **最后评审**：2026-11-01
 
 ## 目标与现状
 
 建立一个中文优先、适配桌面与手机的工作室单页官网。工作室主身份仍是独立游戏工作室；软件作品按成员归属展示，游戏继续作为官网主内容。
 
-`web/` 在开工时为空。工作室根 README 已将其定义为官网本地工作面，未来官网单独建仓。本阶段只做本地原型，不创建托管项目、不发布、不提交。
+`web/` 是官网独立仓库 `SupernovaMicrowaveGames.Website`。代码先推送到 Gitee，再由已配置的 Gitee→GitHub 镜像同步；GitHub Actions 从 GitHub 仓库构建并部署 Pages。
 
 ## 已拍板决定
 
@@ -22,6 +22,7 @@
 | 键盘跳过导航 | 主内容 `<main id="main">` 可接收程序化焦点（`tabindex="-1"`），但不加入普通 Tab 顺序 | 激活“跳到主要内容”后，键盘焦点与滚动位置一起进入正文；接下来的 Tab 到首屏主按钮 | 不用 JavaScript 手动接管焦点，保留原生锚点导航 |
 | 游戏图像 | 现有仓库没有可直接使用的宣传截图；先用 CSS 抽象装饰，不伪装成游戏画面 | Shoreleave 只有字体资产，TomeisleBay 只有模板 UI 资源；避免对外误导 | 后续由用户提供或确认实际游戏画面后替换 |
 | 技术实现 | Astro + TypeScript，输出静态 HTML；保留现有 CSS 视觉 | 组件、类型化内容和静态构建为后续扩展提供清晰边界，也适合托管静态站点 | 暂不引入客户端框架和运行时服务 |
+| Pages 部署 | GitHub Pages 使用 GitHub Actions，构建 `dist/`；Astro `base` 指向仓库子路径 | Astro 源码不是可直接发布的网页目录，Actions 可在部署前完成构建 | 不从仓库 root 或 `/docs` 直接发布源码 |
 
 ## 页面内容
 
@@ -42,6 +43,7 @@
 - `src/data/siteContent.ts`：游戏、成员及成员个人软件的类型化内容数据。
 - `src/styles/global.css`：沿用原有设计的响应式样式、装饰与键盘焦点样式。
 - `.gitignore`：为未来单独建立官网仓库忽略依赖、构建产物和 Astro 缓存。
+- `.github/workflows/deploy.yml`：`main` 更新时构建 Astro 并上传 Pages artifact，再部署到 GitHub Pages。
 
 ## 本地预览
 
@@ -60,6 +62,12 @@ npm run build  # 生成可部署到静态托管的 dist/
 npm run preview  # 本地预览构建产物
 ```
 
+## GitHub Pages
+
+在 GitHub 仓库 **Settings → Pages → Build and deployment → Source** 选择 **GitHub Actions**。无需选择 `/(root)` 或 `/docs`。每次 Gitee 推送镜像到 GitHub 的 `main` 后，Actions 会构建并部署到：
+
+`https://brainleech198.github.io/SupernovaMicrowaveGames.WebSite/`
+
 ## 当前首版的未决内容
 
 - Tomeisle Bay 目前没有可公开的游戏简介或实际画面；卡片只保留名称与状态说明。
@@ -75,13 +83,13 @@ npm run preview  # 本地预览构建产物
 - Codex 内置浏览器检查首屏视觉与内容：中文品牌标题、暖色主按钮、游戏与成员内容均可见；在 628 px 窄视口页头为静态布局，文档无横向溢出。CSS 已定义 900 px 与 680 px 两个布局断点。
 - 页内链接目标全部存在；点击游戏导航会更新到 `#games`，成员、工作室和回顶链接亦有目标。
 - 键盘验证：激活“跳到主要内容”后地址变为 `#main` 且活动焦点为 `MAIN`；再按 Tab，焦点到“浏览游戏作品”。
-- 未发布、未提交；`web/` 仍被工作室元仓忽略，符合官网未来单独建仓的约定。`web/` 内 `.gitignore` 已为单独仓库预备，仓库名尚待确认。
+- 本地 Astro 检查和静态构建通过。Pages 工作流会在 GitHub Actions 上构建和发布；GitHub 仓库 Pages Source 仍需在 Settings 中选择 GitHub Actions。
+- Gitee 是本地 `origin` 推送目标；GitHub 仓库由 Gitee 镜像同步。GitHub Actions 是否成功需查看 GitHub 仓库的 Actions 页及 Pages 部署结果。
 
 ## 实现边界
 
 - 不修改游戏仓、工作室根目录的 `.gitignore` 或任何既有文件。
 - 不增加真实游戏截图、项目功能声明、发行日期、用户评价或联系地址。
 - 当前只展示已知成员账号 `BrainLeech198`，不推断真实姓名、职位或其他成员信息；新增成员时按同一结构添加其个人主页与软件清单。
-- 不注册 Sites、同步远程仓库、发布或提交。
+- 不将本地 `dist/` 提交到仓库；由 GitHub Actions 每次构建生成并部署。
 - 用户后续提供 TomeisleBay 简介或游戏截图后，再替换相应内容；不自行补写其玩法。
-
