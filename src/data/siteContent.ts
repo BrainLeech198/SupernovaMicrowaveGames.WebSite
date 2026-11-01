@@ -66,12 +66,6 @@ export const members: StudioMember[] = [
       },
       {
         number: "A / 02",
-        title: "DeepSink",
-        description: "本机部署的 AI 服务平台，兼容 OpenAI 与 Anthropic API。",
-        links: [{ label: "GitHub 源码", href: "https://github.com/BrainLeech198/deepsink" }],
-      },
-      {
-        number: "A / 03",
         title: "星芒记录者",
         subtitle: "Starburst Recorder",
         description: "本地优先的个人记录工具，内置 AI，支持 Windows 与 Android。",
