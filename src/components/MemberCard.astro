@@ -1,0 +1,35 @@
+---
+import SoftwareItem from "./SoftwareItem.astro";
+import type { StudioMember } from "../data/siteContent";
+
+interface Props {
+  member: StudioMember;
+}
+
+const { member } = Astro.props;
+---
+
+<article class="member-card" aria-labelledby={`member-${member.slug}-title`}>
+  <header class="member-card__header">
+    <div class="member-card__identity">
+      <span class="member-card__number">{member.number}</span>
+      <div>
+        <h3 id={`member-${member.slug}-title`}>{member.name}</h3>
+        <p>{member.role}</p>
+      </div>
+    </div>
+    <div class="member-card__links" aria-label="成员主页">
+      <a href={member.github} target="_blank" rel="noreferrer">GitHub 主页 <span aria-hidden="true">↗</span></a>
+      <a href={member.gitee} target="_blank" rel="noreferrer">Gitee 主页 <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+  <div class="member-card__software">
+    <div class="member-card__subheading">
+      <p class="eyebrow">PERSONAL OPEN SOURCE</p>
+      <h4>个人开源软件</h4>
+    </div>
+    <div class="software-list">
+      {member.software.map((software) => <SoftwareItem software={software} />)}
+    </div>
+  </div>
+</article>

@@ -1,0 +1,30 @@
+---
+import type { SoftwareProject } from "../data/siteContent";
+
+interface Props {
+  software: SoftwareProject;
+}
+
+const { software } = Astro.props;
+---
+
+<article class="software-item">
+  <span class="software-item__number">{software.number}</span>
+  <div>
+    <h5>{software.title}{software.subtitle && <small>{software.subtitle}</small>}</h5>
+    <p>{software.description}</p>
+  </div>
+  {software.links.length > 1 ? (
+    <div class="software-item__links">
+      {software.links.map((link) => (
+        <a href={link.href} target="_blank" rel="noreferrer">{link.label} <span aria-hidden="true">↗</span></a>
+      ))}
+    </div>
+  ) : (
+    <>
+      {software.links.map((link) => (
+        <a href={link.href} target="_blank" rel="noreferrer">{link.label} <span aria-hidden="true">↗</span></a>
+      ))}
+    </>
+  )}
+</article>

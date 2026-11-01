@@ -1,0 +1,21 @@
+---
+import MemberCard from "./MemberCard.astro";
+import type { StudioMember } from "../data/siteContent";
+
+interface Props {
+  members: StudioMember[];
+}
+
+const { members } = Astro.props;
+---
+
+<section class="members section-shell" id="members" aria-labelledby="members-title">
+  <div class="section-heading section-heading--compact">
+    <div>
+      <p class="eyebrow">THE PEOPLE BEHIND THE GAMES</p>
+      <h2 id="members-title">工作室成员<span class="heading-mark">.</span></h2>
+    </div>
+    <p class="section-heading__note">从成员出发，看看<br />游戏之外的个人作品。</p>
+  </div>
+  {members.map((member) => <MemberCard member={member} />)}
+</section>

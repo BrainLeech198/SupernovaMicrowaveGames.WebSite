@@ -1,0 +1,25 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import HeroSection from "../components/HeroSection.astro";
+import GamesSection from "../components/GamesSection.astro";
+import MembersSection from "../components/MembersSection.astro";
+import StudioSection from "../components/StudioSection.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import { games, members } from "../data/siteContent";
+---
+
+<SiteLayout
+  title="超新星微波 — Supernova Microwave Games"
+  description="超新星微波（Supernova Microwave Games）是一家独立游戏工作室。日常家电 × 宇宙现象。"
+>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <SiteHeader />
+  <main id="main" tabindex="-1">
+    <HeroSection />
+    <GamesSection games={games} />
+    <MembersSection members={members} />
+    <StudioSection />
+  </main>
+  <SiteFooter />
+</SiteLayout>

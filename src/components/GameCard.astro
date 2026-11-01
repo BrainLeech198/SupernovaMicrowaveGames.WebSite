@@ -1,0 +1,35 @@
+---
+import type { GameProject } from "../data/siteContent";
+
+interface Props {
+  game: GameProject;
+}
+
+const { game } = Astro.props;
+---
+
+<article class={`game-card game-card--${game.slug}`}>
+  <div class={`game-card__art game-card__art--${game.art}`} aria-hidden="true">
+    {game.art === "island" ? (
+      <>
+        <span class="island-sun"></span>
+        <span class="island-water island-water--back"></span>
+        <span class="island-land"></span>
+        <span class="island-water island-water--front"></span>
+      </>
+    ) : (
+      <>
+        <span class="bay-moon"></span>
+        <span class="bay-line bay-line--one"></span>
+        <span class="bay-line bay-line--two"></span>
+        <span class="bay-line bay-line--three"></span>
+      </>
+    )}
+    <span class={game.art === "island" ? "island-label" : "bay-label"}>{game.artLabel}</span>
+  </div>
+  <div class="game-card__body">
+    <div class="game-card__meta"><span>{game.status}</span><span>{game.number}</span></div>
+    <h3>{game.title}{game.subtitle && <span>{game.subtitle}</span>}</h3>
+    <p>{game.description}</p>
+  </div>
+</article>
