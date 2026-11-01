@@ -83,8 +83,8 @@ npm run preview  # 本地预览构建产物
 - Codex 内置浏览器检查首屏视觉与内容：中文品牌标题、暖色主按钮、游戏与成员内容均可见；在 628 px 窄视口页头为静态布局，文档无横向溢出。CSS 已定义 900 px 与 680 px 两个布局断点。
 - 页内链接目标全部存在；点击游戏导航会更新到 `#games`，成员、工作室和回顶链接亦有目标。
 - 键盘验证：激活“跳到主要内容”后地址变为 `#main` 且活动焦点为 `MAIN`；再按 Tab，焦点到“浏览游戏作品”。
-- 本地 Astro 检查和静态构建通过。Pages 工作流会在 GitHub Actions 上构建和发布；GitHub 仓库 Pages Source 仍需在 Settings 中选择 GitHub Actions。
-- Gitee 是本地 `origin` 推送目标；GitHub 仓库由 Gitee 镜像同步。GitHub Actions 是否成功需查看 GitHub 仓库的 Actions 页及 Pages 部署结果。
+- 本地 Astro 检查和静态构建通过；GitHub Pages Source 已配置为 GitHub Actions，最新部署成功，站点返回 HTTP 200。
+- Gitee 是本地 `origin` 推送目标；GitHub 仓库由 Gitee 镜像同步，镜像提交触发 GitHub Actions 构建和部署。
 
 ## 实现边界
 
