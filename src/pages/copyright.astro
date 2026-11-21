@@ -1,0 +1,190 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+
+const baseUrl = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
+const brandAssets = [
+  {
+    name: "拿手柄的微波炉角色 Logo",
+    file: "public/branding/supernova-microwave-mascot.png",
+  },
+  {
+    name: "SMG 图形 Logo",
+    file: "public/branding/supernova-microwave-smg.png",
+  },
+  {
+    name: "中文辅助字标",
+    file: "public/branding/supernova-microwave-wordmark-zh.png",
+  },
+] as const;
+---
+
+<SiteLayout
+  title="版权与素材声明 — 超新星微波"
+  description="超新星微波工作室品牌 Logo 与中文辅助字标的版权及生成来源声明。"
+>
+  <main class="copyright-page" id="top">
+    <div class="copyright-page__inner">
+      <a class="copyright-page__home" href={baseUrl}>返回工作室首页</a>
+
+      <header class="copyright-page__heading">
+        <p class="eyebrow">超新星微波 · 品牌素材</p>
+        <h1>版权与素材声明</h1>
+        <p class="copyright-page__intro">
+          本页说明官网使用的工作室标志、中文辅助字标的来源与使用边界。
+        </p>
+      </header>
+
+      <section class="copyright-page__section" aria-labelledby="assets-title">
+        <h2 id="assets-title">本声明涵盖的素材</h2>
+        <ul class="copyright-page__assets">
+          {brandAssets.map((asset) => (
+            <li>
+              <strong>{asset.name}</strong>
+              <code>{asset.file}</code>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="copyright-page__section" aria-labelledby="rights-title">
+        <h2 id="rights-title">版权与使用许可</h2>
+        <p class="copyright-page__notice">© 2026 Supernova Microwave Games. All rights reserved.</p>
+        <p>
+          以上图像作为超新星微波工作室品牌素材保留所有权利。官网展示不构成开源授权；未经工作室书面许可，
+          不得复制、再发布、改编、再授权，或作为其他组织与产品的品牌标识使用。
+        </p>
+      </section>
+
+      <section class="copyright-page__section" aria-labelledby="source-title">
+        <h2 id="source-title">生成来源与权利范围</h2>
+        <p>
+          三项图像均由工作室负责人使用 OpenAI ImageGen 按工作室要求生成并选定，图像内容未作修改。
+        </p>
+        <p>
+          根据 OpenAI《<a href="https://openai.com/policies/terms-of-use/">使用条款</a>》，在 OpenAI 与用户之间且适用法律允许的范围内，
+          用户拥有生成输出。条款也说明输出可能不唯一，其他用户可能获得相似结果。
+        </p>
+        <p>
+          本声明记录工作室对这些素材的权利主张与许可边界；它不代表已完成商标近似检索，也不保证各司法辖区
+          对 AI 生成图像的版权认定或注册结果。
+        </p>
+      </section>
+
+      <a class="copyright-page__home copyright-page__home--bottom" href={baseUrl}>
+        返回工作室首页
+      </a>
+    </div>
+  </main>
+</SiteLayout>
+
+<style>
+  .copyright-page {
+    width: min(100% - var(--page-gutter) * 2, 820px);
+    min-height: 100vh;
+    margin-inline: auto;
+    padding-block: clamp(44px, 8vw, 88px);
+  }
+
+  .copyright-page__home {
+    display: inline-flex;
+    color: var(--accent-cool);
+    font-size: 14px;
+    text-decoration: none;
+  }
+
+  .copyright-page__home:hover {
+    color: var(--text);
+  }
+
+  .copyright-page__heading {
+    margin-top: clamp(38px, 7vw, 68px);
+  }
+
+  .copyright-page__heading .eyebrow {
+    margin-bottom: 11px;
+  }
+
+  .copyright-page h1 {
+    margin: 0;
+    color: var(--text);
+    font-size: clamp(34px, 6vw, 54px);
+    font-weight: 680;
+    letter-spacing: -0.04em;
+    line-height: 1.2;
+  }
+
+  .copyright-page__intro {
+    max-width: 620px;
+    margin: 18px 0 0;
+    color: var(--muted);
+    font-size: 17px;
+  }
+
+  .copyright-page__section {
+    margin-top: 43px;
+    padding-top: 25px;
+    border-top: 1px solid var(--line);
+  }
+
+  .copyright-page__section h2 {
+    margin: 0 0 17px;
+    color: var(--text);
+    font-size: 21px;
+    font-weight: 620;
+  }
+
+  .copyright-page__section p {
+    margin: 0 0 14px;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.85;
+  }
+
+  .copyright-page__section p:last-child {
+    margin-bottom: 0;
+  }
+
+  .copyright-page__section a {
+    color: var(--accent-cool);
+    text-underline-offset: 3px;
+  }
+
+  .copyright-page__notice {
+    color: var(--text) !important;
+    font-weight: 650;
+  }
+
+  .copyright-page__assets {
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+    list-style: none;
+  }
+
+  .copyright-page__assets li {
+    display: grid;
+    gap: 6px;
+    padding: 16px 4px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .copyright-page__assets strong {
+    color: var(--text);
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .copyright-page__assets code {
+    color: var(--muted);
+    font-family: ui-monospace, "Cascadia Code", monospace;
+    font-size: 13px;
+    overflow-wrap: anywhere;
+  }
+
+  .copyright-page__home--bottom {
+    margin-top: 38px;
+  }
+</style>

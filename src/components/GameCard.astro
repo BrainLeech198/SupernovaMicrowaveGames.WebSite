@@ -6,30 +6,21 @@ interface Props {
 }
 
 const { game } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
 ---
 
-<article class={`game-card game-card--${game.slug}`}>
-  <div class={`game-card__art game-card__art--${game.art}`} aria-hidden="true">
-    {game.art === "island" ? (
-      <>
-        <span class="island-sun"></span>
-        <span class="island-water island-water--back"></span>
-        <span class="island-land"></span>
-        <span class="island-water island-water--front"></span>
-      </>
-    ) : (
-      <>
-        <span class="bay-moon"></span>
-        <span class="bay-line bay-line--one"></span>
-        <span class="bay-line bay-line--two"></span>
-        <span class="bay-line bay-line--three"></span>
-      </>
-    )}
-    <span class={game.art === "island" ? "island-label" : "bay-label"}>{game.artLabel}</span>
+<article class:list={["game-row", game.image ? "game-row--illustrated" : "game-row--type", game.website && "game-row--linked"]}>
+  {game.image && <img class="game-row__image" src={`${baseUrl}${game.image}`} alt="Shoreleave 海岛游戏画面" width="2560" height="1440" loading="lazy" />}
+  <div class="game-row__content">
+    <p class="game-row__kicker">原创游戏 <span aria-hidden="true">/</span> {game.status}</p>
+    <div class="game-row__title">
+      <h3>{game.title}</h3>
+      {game.subtitle && <p class="game-row__subtitle">{game.subtitle}</p>}
+    </div>
+    {game.description && <p class="game-row__description">{game.description}</p>}
   </div>
-  <div class="game-card__body">
-    <div class="game-card__meta"><span>{game.status}</span><span>{game.number}</span></div>
-    <h3>{game.title}{game.subtitle && <span>{game.subtitle}</span>}</h3>
-    <p>{game.description}</p>
-  </div>
+  {!game.image && <span class="game-row__monogram" aria-hidden="true">TB</span>}
+  {game.website && <a class="game-row__link" href={game.website} aria-label={`前往 ${game.title} 官网`}><span>访问官网</span></a>}
 </article>

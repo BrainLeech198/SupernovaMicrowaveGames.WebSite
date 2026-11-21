@@ -1,9 +1,65 @@
+---
+const baseUrl = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+---
+
 <section class="studio section-shell" id="studio" aria-labelledby="studio-title">
-  <div class="studio__mark" aria-hidden="true"><span></span><i></i></div>
+  <img
+    class="studio__wordmark"
+    src={`${baseUrl}branding/supernova-microwave-wordmark-zh.png`}
+    alt=""
+    width="2172"
+    height="724"
+    loading="lazy"
+  />
   <div class="studio__copy">
-    <p class="eyebrow">ABOUT THE STUDIO</p>
-    <h2 id="studio-title">超新星微波</h2>
-    <p>Supernova Microwave Games 是一家独立游戏工作室。我们喜欢把熟悉的日常，与遥远的宇宙并置——让一个小小的瞬间，打开更大的世界。</p>
+    <h2 id="studio-title">欢迎来到超新星微波</h2>
+    <p>超新星微波（Supernova Microwave Games）是一家独立游戏工作室，正在开发 Shoreleave 与 Tomeisle Bay 两款原创游戏。</p>
   </div>
-  <p class="studio__stamp" aria-hidden="true">SUPERNOVA<br />MICROWAVE<br />GAMES</p>
+  <button class="studio__mascot-button" type="button" aria-label="和微波炉吉祥物互动">
+    <img
+      class="studio__mascot"
+      src={`${baseUrl}branding/supernova-microwave-mascot.png`}
+      alt=""
+      width="1254"
+      height="1254"
+      loading="lazy"
+    />
+    <span class="studio__reaction" aria-live="polite" aria-atomic="true"></span>
+  </button>
 </section>
+
+<script>
+  const mascotButton = document.querySelector<HTMLButtonElement>(".studio__mascot-button");
+  const mascotImage = mascotButton?.querySelector<HTMLImageElement>(".studio__mascot");
+  const reaction = mascotButton?.querySelector<HTMLElement>(".studio__reaction");
+  let activeAnimation: Animation | undefined;
+  let reactionTimer: number | undefined;
+
+  /** 播放一次吉祥物互动，并在动作结束后恢复静止状态。 */
+  function playMascotReaction(): void {
+    if (!mascotImage || !reaction) return;
+
+    activeAnimation?.cancel();
+    window.clearTimeout(reactionTimer);
+    reaction.textContent = "叮！";
+    reactionTimer = window.setTimeout(() => {
+      reaction.textContent = "";
+    }, 1200);
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    activeAnimation = mascotImage.animate(
+      [
+        { transform: "translateX(0) rotate(0deg)", offset: 0 },
+        { transform: "translateX(-12px) rotate(-6deg)", offset: 0.3 },
+        { transform: "translateX(10px) rotate(5deg)", offset: 0.65 },
+        { transform: "translateX(0) rotate(0deg)", offset: 1 },
+      ],
+      { duration: 720, easing: "ease-in-out" },
+    );
+  }
+
+  mascotButton?.addEventListener("click", playMascotReaction);
+</script>

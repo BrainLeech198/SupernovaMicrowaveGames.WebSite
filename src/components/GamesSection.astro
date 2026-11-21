@@ -11,14 +11,11 @@ const { games } = Astro.props;
 
 <section class="games section-shell" id="games" aria-labelledby="games-title">
   <div class="section-heading">
-    <div>
-      <p class="eyebrow">PLAY IN PROGRESS</p>
-      <h2 id="games-title">游戏作品<span class="heading-mark">.</span></h2>
-    </div>
-    <p class="section-heading__note">两款游戏正在制作，<br />各自的世界仍在搭建。</p>
+    <h2 id="games-title">我们的游戏</h2>
+    <p class="games__intro">两个世界，正在制作中。</p>
   </div>
 
-  <div class="game-grid">
+  <div class="game-list">
     {games.map((game) => <GameCard game={game} />)}
   </div>
 </section>

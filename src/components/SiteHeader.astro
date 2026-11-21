@@ -1,16 +1,28 @@
+---
+const baseUrl = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+---
+
 <header class="site-header">
   <div class="site-header__inner">
     <a class="wordmark" href="#top" aria-label="超新星微波，返回首页">
-      <span class="wordmark__symbol" aria-hidden="true"><span></span></span>
+      <img
+        class="wordmark__symbol"
+        src={`${baseUrl}branding/supernova-microwave-smg.png`}
+        alt=""
+        width="76"
+        height="76"
+      />
       <span class="wordmark__text">
         <strong>超新星微波</strong>
-        <small>SUPERNOVA MICROWAVE GAMES</small>
+        <small>Supernova Microwave Games</small>
       </span>
     </a>
     <nav class="site-nav" aria-label="主导航">
-      <a href="#games">游戏作品</a>
-      <a href="#members">工作室成员</a>
-      <a href="#studio">关于工作室</a>
+      <a href="#games">游戏</a>
+      <a href="#members">成员</a>
+      <a href="#studio">关于</a>
     </nav>
   </div>
 </header>

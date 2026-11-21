@@ -11,15 +11,15 @@ import { games, members } from "../data/siteContent";
 
 <SiteLayout
   title="超新星微波 — Supernova Microwave Games"
-  description="超新星微波（Supernova Microwave Games）是一家独立游戏工作室。日常家电 × 宇宙现象。"
+  description="超新星微波（Supernova Microwave Games）是一家独立游戏工作室，目前正在开发 Shoreleave 与 Tomeisle Bay。"
 >
   <a class="skip-link" href="#main">跳到主要内容</a>
   <SiteHeader />
   <main id="main" tabindex="-1">
     <HeroSection />
+    <StudioSection />
     <GamesSection games={games} />
     <MembersSection members={members} />
-    <StudioSection />
   </main>
   <SiteFooter />
 </SiteLayout>
