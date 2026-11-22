@@ -40,18 +40,15 @@
   .section-heading h2 { font-size: 28px; }
   .games .section-heading { display: block; }
   .games__intro { margin-top: 8px; font-size: 13px; }
-  .game-list { gap: 14px; }
-  .game-row { min-height: 440px; }
-  .game-row--illustrated { padding: 28px 22px; }
-  .game-row--illustrated::after { background: linear-gradient(0deg, rgba(8, 16, 40, .92), rgba(8, 16, 40, .15) 80%); }
-  .game-row__image { object-position: 58% center; }
-  .game-row__title h3 { font-size: clamp(42px, 12vw, 72px); }
-  .game-row__subtitle { font-size: 23px; }
-  .game-row--type { min-height: 310px; padding: 26px 22px; }
-  .game-row--type .game-row__title h3 { font-size: clamp(40px, 11vw, 70px); }
-  .game-row--type::after { width: 90%; right: -35%; bottom: -50%; }
-  .game-row__monogram { font-size: 200px; bottom: -9%; }
-  .game-row__link { padding: 12px 16px; }
+  .game-row { grid-template-columns: minmax(0, 1fr); gap: 16px; padding-block: 20px 24px; }
+  .game-row__art { aspect-ratio: 16 / 9; }
+  .game-row__content { max-width: none; }
+  .game-row__title h3 { font-size: clamp(40px, 11vw, 66px); }
+  .game-row__subtitle { font-size: 22px; }
+  .game-row__description { margin-top: 8px; font-size: 15px; }
+  .game-row__aside { display: flex; align-items: center; justify-content: space-between; gap: 14px; justify-items: stretch; }
+  .game-row__link { margin-left: auto; }
+  .game-row__monogram { font-size: clamp(108px, 35vw, 180px); }
   .members { margin-top: 45px; padding-block: 38px; }
   .members__inner { grid-template-columns: 1fr; gap: 28px; }
   .members__heading h2 { font-size: 34px; }
