@@ -19,7 +19,7 @@ const { members } = Astro.props;
       {members.map((member, index) => (
         <li class="member-list__item">
           <span class="member-list__index">{String(index + 1).padStart(2, "0")}</span>
-          <img class="member-list__mark" src={`${import.meta.env.BASE_URL}branding/supernova-microwave-mascot.png`} alt="" width="1254" height="1254" loading="lazy" />
+          <img class="member-list__mark" src={member.avatar} alt={`${member.name} 的 GitHub 头像`} width="256" height="256" loading="lazy" />
           <span class="member-list__name">{member.name}</span>
           <nav class="member-list__links" aria-label={`${member.name} 的个人主页`}>
             <a href={member.github} target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>

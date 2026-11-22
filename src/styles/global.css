@@ -416,10 +416,11 @@ a:focus-visible {
   .members__inner { grid-template-columns: 1fr; gap: 28px; }
   .members__heading h2 { font-size: 34px; }
   .members__heading > span { margin-top: 10px; }
-  .member-list__item { min-height: 110px; grid-template-columns: 22px 54px minmax(0,1fr); gap: 12px; }
+  .member-list__item { min-height: 132px; grid-template-columns: 22px 54px minmax(0,1fr); grid-template-rows: 1fr auto; gap: 4px 12px; padding-block: 12px; }
+  .member-list__index { grid-column: 1; grid-row: 1; padding-top: 0; }
   .member-list__mark { width: 54px; height: 54px; }
-  .member-list__name { font-size: clamp(20px, 6vw, 27px); }
-  .member-list__links { grid-column: 3; gap: 20px; margin-top: -24px; align-self: end; padding-bottom: 13px; }
+  .member-list__name { grid-column: 3; grid-row: 1; align-self: center; font-size: clamp(20px, 6vw, 27px); overflow-wrap: anywhere; }
+  .member-list__links { grid-column: 3; grid-row: 2; gap: 20px; margin-top: 0; align-self: start; padding-bottom: 0; }
   .member-list__links a { font-size: 13px; }
   .site-footer { align-items: flex-start; flex-wrap: wrap; }
   .site-footer p { order: 2; width: 100%; }

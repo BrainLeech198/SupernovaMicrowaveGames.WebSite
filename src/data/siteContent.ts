@@ -9,6 +9,7 @@ export interface GameProject {
 
 export interface StudioMember {
   name: string;
+  avatar: string;
   github: string;
   gitee: string;
 }
@@ -30,6 +31,7 @@ export const games: GameProject[] = [
 export const members: StudioMember[] = [
   {
     name: "BrainLeech198",
+    avatar: "https://avatars.githubusercontent.com/u/260578826?s=256&v=4",
     github: "https://github.com/BrainLeech198",
     gitee: "https://gitee.com/Mr_BrainLeech",
   },
