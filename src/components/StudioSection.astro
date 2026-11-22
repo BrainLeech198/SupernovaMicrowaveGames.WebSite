@@ -3,27 +3,38 @@ import { withBasePath } from "../utils/sitePath";
 ---
 
 <section class="studio section-shell" id="studio" aria-labelledby="studio-title">
-  <img
-    class="studio__wordmark"
-    src={withBasePath("branding/supernova-microwave-wordmark-zh.png")}
-    alt=""
-    width="2172"
-    height="724"
-    loading="lazy"
-  />
-  <div class="studio__copy">
-    <h2 id="studio-title">欢迎来到超新星微波</h2>
-    <p>超新星微波（Supernova Microwave Games）是一家独立游戏工作室，正在开发 Shoreleave 与 Tomeisle Bay 两款原创游戏。</p>
+  <div class="studio__story">
+    <img
+      class="studio__wordmark"
+      src={withBasePath("branding/supernova-microwave-wordmark-zh.png")}
+      alt=""
+      width="2172"
+      height="724"
+      loading="lazy"
+    />
+    <div class="studio__copy">
+      <h2 id="studio-title">欢迎来到超新星微波</h2>
+      <p>超新星微波（Supernova Microwave Games）是一家独立游戏工作室，正在开发 Shoreleave 与 Tomeisle Bay 两款原创游戏。</p>
+    </div>
   </div>
-  <button class="studio__mascot-button" type="button" aria-label="点击和微波炉吉祥物玩耍" data-action="idle">
-    <span
-      class="studio__mascot"
-      role="img"
-      aria-label="会眨眼、走路并变换表情的微波炉吉祥物"
-      style={`--mascot-sprites: url("${withBasePath("branding/supernova-microwave-mascot-sprites.png")}")`}
-    ></span>
-    <span class="studio__reaction" aria-live="polite" aria-atomic="true"></span>
-  </button>
+  <div class="studio__visual">
+    <button
+      class="studio__mascot-button"
+      type="button"
+      aria-label="与微波炉吉祥物互动，切换动作"
+      aria-describedby="mascot-interaction-hint"
+      data-action="idle"
+    >
+      <span
+        class="studio__mascot"
+        role="img"
+        aria-label="会眨眼、走路并变换表情的微波炉吉祥物"
+        style={`--mascot-sprites: url("${withBasePath("branding/supernova-microwave-mascot-sprites.png")}")`}
+      ></span>
+      <span class="studio__reaction" aria-live="polite" aria-atomic="true"></span>
+    </button>
+    <span class="studio__interaction-hint" id="mascot-interaction-hint">点我试试</span>
+  </div>
 </section>
 
 <script>

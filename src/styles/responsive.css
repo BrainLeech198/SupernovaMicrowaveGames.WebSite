@@ -1,8 +1,9 @@
 /* Responsive styles. */
 
 @media (max-width: 960px) {
-  .studio { grid-template-columns: minmax(150px, 0.8fr) minmax(0, 1.3fr) 120px; gap: 18px; }
-  .studio__mascot-button { width: min(100%, 120px); }
+  .studio { grid-template-columns: minmax(0, 1fr) minmax(240px, 0.78fr); gap: clamp(22px, 4vw, 42px); }
+  .studio__visual { min-height: 320px; }
+  .studio__mascot-button { width: min(100%, 290px); }
   .hero__panel { width: min(600px, 72%); }
   .member-list__item { min-height: 152px; grid-template-columns: 30px 64px minmax(0,1fr); grid-template-rows: auto auto; gap: 8px 18px; padding-block: 14px; }
   .member-list__index { grid-column: 1; grid-row: 1; padding-top: 4px; }
@@ -27,11 +28,14 @@
   .hero h1 { font-size: clamp(34px, 9vw, 48px); }
   .hero h1 span { font-size: 20px; }
   .hero__panel > p:not(.hero__eyebrow) { margin-block: 12px 17px; }
-  .studio { grid-template-columns: minmax(0, 1fr) 112px; gap: 8px 12px; padding-block: 28px 12px; }
-  .studio__wordmark { width: min(100%, 300px); grid-column: 1 / -1; }
-  .studio__copy { grid-column: 1; padding-left: 0; border-left: 0; }
-  .studio__copy h2 { font-size: 21px; }
-  .studio__mascot-button { grid-column: 2; width: min(100%, 112px); }
+  .studio { grid-template-columns: minmax(0, 1fr); gap: 22px; padding-block: 34px 28px; }
+  .studio__story { gap: 14px; }
+  .studio__wordmark { width: min(100%, 300px); }
+  .studio__copy { padding-left: 16px; border-left-width: 3px; }
+  .studio__copy h2 { font-size: clamp(23px, 6vw, 31px); }
+  .studio__copy p { font-size: 16px; }
+  .studio__visual { width: min(100%, 420px); min-height: 260px; justify-self: center; }
+  .studio__mascot-button { width: min(68vw, 230px); }
   .games, .members { padding-top: 33px; scroll-margin-top: 20px; }
   .section-heading h2 { font-size: 28px; }
   .games .section-heading { display: block; }
@@ -63,9 +67,9 @@
 }
 
 @media (max-width: 420px) {
-  .studio { grid-template-columns: 1fr; }
-  .studio__copy, .studio__mascot-button { grid-column: 1; }
-  .studio__mascot-button { justify-self: center; }
+  .studio { gap: 16px; }
+  .studio__visual { min-height: 230px; }
+  .studio__mascot-button { width: min(65vw, 200px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
