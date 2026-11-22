@@ -1,6 +1,7 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
-import { withBasePath } from "../utils/sitePath";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
 
 const brandAssets = [
   {
@@ -22,10 +23,10 @@ const brandAssets = [
   title="版权与素材声明 — 超新星微波"
   description="超新星微波工作室品牌 Logo 与中文辅助字标的版权及生成来源声明。"
 >
-  <main class="copyright-page" id="top">
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <SiteHeader />
+  <main class="copyright-page" id="main" tabindex="-1">
     <div class="copyright-page__inner">
-      <a class="copyright-page__home" href={withBasePath("")}>返回工作室首页</a>
-
       <header class="copyright-page__heading">
         <p class="eyebrow">超新星微波 · 品牌素材</p>
         <h1>版权与素材声明</h1>
@@ -70,34 +71,20 @@ const brandAssets = [
         </p>
       </section>
 
-      <a class="copyright-page__home copyright-page__home--bottom" href={withBasePath("")}>
-        返回工作室首页
-      </a>
     </div>
   </main>
+  <SiteFooter />
 </SiteLayout>
 
 <style>
   .copyright-page {
     width: min(100% - var(--page-gutter) * 2, 820px);
-    min-height: 100vh;
     margin-inline: auto;
     padding-block: clamp(44px, 8vw, 88px);
   }
 
-  .copyright-page__home {
-    display: inline-flex;
-    color: var(--accent-cool);
-    font-size: 14px;
-    text-decoration: none;
-  }
-
-  .copyright-page__home:hover {
-    color: var(--text);
-  }
-
   .copyright-page__heading {
-    margin-top: clamp(38px, 7vw, 68px);
+    margin-top: 0;
   }
 
   .copyright-page__heading .eyebrow {
@@ -145,9 +132,13 @@ const brandAssets = [
   }
 
   .copyright-page__section a {
-    color: var(--accent-cool);
+    color: var(--accent);
+    font-weight: 600;
     text-underline-offset: 3px;
+    transition: color 160ms ease;
   }
+
+  .copyright-page__section a:hover { color: var(--accent-hover); }
 
   .copyright-page__notice {
     color: var(--text) !important;
@@ -179,9 +170,5 @@ const brandAssets = [
     font-family: ui-monospace, "Cascadia Code", monospace;
     font-size: 13px;
     overflow-wrap: anywhere;
-  }
-
-  .copyright-page__home--bottom {
-    margin-top: 38px;
   }
 </style>

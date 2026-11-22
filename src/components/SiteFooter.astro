@@ -3,7 +3,7 @@ import { withBasePath } from "../utils/sitePath";
 ---
 
 <footer class="site-footer">
-  <a class="footer-wordmark" href="#top" aria-label="超新星微波，回到顶部">
+  <a class="footer-wordmark" href={`${withBasePath("")}#top`} aria-label="超新星微波，回到顶部">
     <img
       src={withBasePath("branding/supernova-microwave-smg.png")}
       alt=""
@@ -19,6 +19,6 @@ import { withBasePath } from "../utils/sitePath";
   <p>© 2026 Supernova Microwave Games. All rights reserved.</p>
   <nav class="site-footer__links" aria-label="页脚导航">
     <a href={withBasePath("copyright/")}>版权与素材声明</a>
-    <a class="back-top" href="#top">回到顶部</a>
+    <a class="back-top" href={`${withBasePath("")}#top`}>回到顶部</a>
   </nav>
 </footer>
