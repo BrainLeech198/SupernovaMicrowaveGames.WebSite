@@ -1,7 +1,5 @@
 ---
-const baseUrl = import.meta.env.BASE_URL.endsWith("/")
-  ? import.meta.env.BASE_URL
-  : `${import.meta.env.BASE_URL}/`;
+import { withBasePath } from "../utils/sitePath";
 ---
 
 <header class="site-header">
@@ -9,7 +7,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith("/")
     <a class="wordmark" href="#top" aria-label="超新星微波，返回首页">
       <img
         class="wordmark__symbol"
-        src={`${baseUrl}branding/supernova-microwave-smg.png`}
+        src={withBasePath("branding/supernova-microwave-smg.png")}
         alt=""
         width="76"
         height="76"

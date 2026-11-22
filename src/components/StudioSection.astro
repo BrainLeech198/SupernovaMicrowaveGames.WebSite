@@ -1,13 +1,11 @@
 ---
-const baseUrl = import.meta.env.BASE_URL.endsWith("/")
-  ? import.meta.env.BASE_URL
-  : `${import.meta.env.BASE_URL}/`;
+import { withBasePath } from "../utils/sitePath";
 ---
 
 <section class="studio section-shell" id="studio" aria-labelledby="studio-title">
   <img
     class="studio__wordmark"
-    src={`${baseUrl}branding/supernova-microwave-wordmark-zh.png`}
+    src={withBasePath("branding/supernova-microwave-wordmark-zh.png")}
     alt=""
     width="2172"
     height="724"
@@ -22,7 +20,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith("/")
       class="studio__mascot"
       role="img"
       aria-label="会眨眼、走路并变换表情的微波炉吉祥物"
-      style={`--mascot-sprites: url("${baseUrl}branding/supernova-microwave-mascot-sprites.png")`}
+      style={`--mascot-sprites: url("${withBasePath("branding/supernova-microwave-mascot-sprites.png")}")`}
     ></span>
     <span class="studio__reaction" aria-live="polite" aria-atomic="true"></span>
   </button>

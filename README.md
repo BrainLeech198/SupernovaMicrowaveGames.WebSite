@@ -3,7 +3,7 @@
 > **Owner**：用户（工作室所有者）
 > **状态**：Astro 静态站，页面内容与视觉持续完善
 > **适用范围**：`SupernovaMicrowaveGames.Website` 工作室官网仓库
-> **最后评审**：2026-11-21
+> **最后评审**：2026-11-22
 
 ## 网站目标
 
@@ -28,15 +28,35 @@
 
 - `src/pages/index.astro`：单页入口，组合各内容区块。
 - `src/pages/copyright.astro`：静态品牌素材版权与来源声明页。
-- `src/layouts/SiteLayout.astro`：页面语言、标题、主题色、描述和全局样式入口。
+- `src/layouts/SiteLayout.astro`：页面语言、标题、主题色与描述；加载全站样式入口并设置浏览器图标。
 - `src/components/`：页头、首屏、游戏项目条目、成员名单、工作室简介和含版权入口的页脚。
-- `src/data/siteContent.ts`：游戏和成员名单的类型化内容数据、已确认的游戏图路径及可选官网地址。
-- `src/styles/global.css`：色彩、排版、横幅与作品条目、响应式布局、键盘焦点和减少动态效果设置。
+- `src/data/siteContent.ts`：游戏和成员名单的类型化内容数据、图片说明、图路径及可选游戏官网地址。
+- `src/utils/sitePath.ts`：给站内页面和 `public/` 资源统一添加 Astro `base` 前缀，保证 GitHub Pages 项目站点地址正确。
+- `src/styles/index.css`：样式入口，按固定顺序载入基础、区块和响应式样式。
+- `src/styles/tokens.css`：品牌色、全局重置、键盘焦点和通用内容宽度。
+- `src/styles/site-header.css`、`hero.css`、`studio.css`、`games.css`、`members.css`、`site-footer.css`：各页面区块的基础样式。
+- `src/styles/responsive.css`：平板/手机断点与减少动态效果规则，最后加载以覆盖区块基础样式。
 - `public/game-art/shoreleave.webp`：由 `project/Shoreleave/asset/ui/tscn/menu/background.png` 转换的官网展示图，供横幅和缩略图共用。
 - `public/branding/supernova-microwave-mascot-sprites.png`：透明背景 3×2 吉祥物动作表，供待机、走路和表情动画使用。
 - `.github/workflows/deploy.yml`：`main` 更新时构建 Astro 并部署 Pages。
 
-新增或修改已确认的项目名称、简介、状态和官网地址时，编辑 `src/data/siteContent.ts`；给某款游戏填入 `website: "https://..."` 后，作品展示带自动成为可点击的官网入口。成员和个人主页入口也在这里维护。首屏文案编辑 `src/components/HeroSection.astro`，吉祥物互动在 `src/components/StudioSection.astro`，视觉调整编辑 `src/styles/global.css`。
+## 修改入口速查
+
+| 想修改 | 编辑位置 |
+|---|---|
+| 游戏名称、状态、简介、展示图片和图片说明、游戏官网链接 | `src/data/siteContent.ts` |
+| 成员名称、头像和 GitHub/Gitee 链接 | `src/data/siteContent.ts` |
+| 首屏标题、简介和按钮文字 | `src/components/HeroSection.astro` |
+| 吉祥物文案、动作反馈和点击行为 | `src/components/StudioSection.astro` |
+| 版权素材名单与版权页正文 | `src/pages/copyright.astro` |
+| 品牌色、字体、全局焦点样式 | `src/styles/tokens.css` |
+| 某个区块的桌面样式 | 对应的 `src/styles/<section>.css` |
+| 平板、手机或减少动态效果的样式 | `src/styles/responsive.css` |
+| 浏览器图标、页面标题与搜索描述 | `src/layouts/SiteLayout.astro` 与 `src/pages/` 中对应页面 |
+
+`src/pages/index.astro` 只负责组合首页。页面结构通过组件 props 接收 `siteContent.ts` 的数据；组件不保存游戏或成员名单副本。新增静态图片时放进 `public/`，在数据中填写不带 `/` 开头的相对路径和合适的替代文本；Astro 会通过 `sitePath.ts` 自动加上项目站点前缀。样式导入顺序由 `src/styles/index.css` 管理，响应式覆盖规则需保留在最后。
+
+修改已确认的游戏官网地址时，填入 `website: "https://..."`，作品展示带自动成为可点击的官网入口。不要在没有第二个实际使用场景时新增通用组件、状态管理或依赖。
 
 ## 本地开发
 

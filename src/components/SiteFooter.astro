@@ -1,13 +1,11 @@
 ---
-const baseUrl = import.meta.env.BASE_URL.endsWith("/")
-  ? import.meta.env.BASE_URL
-  : `${import.meta.env.BASE_URL}/`;
+import { withBasePath } from "../utils/sitePath";
 ---
 
 <footer class="site-footer">
   <a class="footer-wordmark" href="#top" aria-label="超新星微波，回到顶部">
     <img
-      src={`${baseUrl}branding/supernova-microwave-smg.png`}
+      src={withBasePath("branding/supernova-microwave-smg.png")}
       alt=""
       width="76"
       height="76"
@@ -20,7 +18,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith("/")
   </a>
   <p>© 2026 Supernova Microwave Games. All rights reserved.</p>
   <nav class="site-footer__links" aria-label="页脚导航">
-    <a href={`${baseUrl}copyright/`}>版权与素材声明</a>
+    <a href={withBasePath("copyright/")}>版权与素材声明</a>
     <a class="back-top" href="#top">回到顶部</a>
   </nav>
 </footer>

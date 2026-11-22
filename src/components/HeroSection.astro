@@ -1,13 +1,11 @@
 ---
-const baseUrl = import.meta.env.BASE_URL.endsWith("/")
-  ? import.meta.env.BASE_URL
-  : `${import.meta.env.BASE_URL}/`;
+import { withBasePath } from "../utils/sitePath";
 ---
 
 <section class="hero" id="top" aria-labelledby="hero-title">
   <img
     class="hero__image"
-    src={`${baseUrl}game-art/shoreleave.webp`}
+    src={withBasePath("game-art/shoreleave.webp")}
     alt="Shoreleave 游戏中的日落海岛景色"
     width="2560"
     height="1440"

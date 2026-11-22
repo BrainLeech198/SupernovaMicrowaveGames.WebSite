@@ -1,18 +1,33 @@
 ---
 import type { GameProject } from "../data/siteContent";
+import { withBasePath } from "../utils/sitePath";
 
 interface Props {
   game: GameProject;
 }
 
 const { game } = Astro.props;
-const baseUrl = import.meta.env.BASE_URL.endsWith("/")
-  ? import.meta.env.BASE_URL
-  : `${import.meta.env.BASE_URL}/`;
 ---
 
-<article class:list={["game-row", game.image ? "game-row--illustrated" : "game-row--type", game.website && "game-row--linked"]}>
-  {game.image && <img class="game-row__image" src={`${baseUrl}${game.image}`} alt="Shoreleave 海岛游戏画面" width="2560" height="1440" loading="lazy" />}
+<article
+  class:list={[
+    "game-row",
+    game.image ? "game-row--illustrated" : "game-row--type",
+    game.website && "game-row--linked",
+  ]}
+>
+  {
+    game.image && (
+      <img
+        class="game-row__image"
+        src={withBasePath(game.image)}
+        alt={game.imageAlt ?? `${game.title} 游戏画面`}
+        width="2560"
+        height="1440"
+        loading="lazy"
+      />
+    )
+  }
   <div class="game-row__content">
     <p class="game-row__kicker">原创游戏 <span aria-hidden="true">/</span> {game.status}</p>
     <div class="game-row__title">

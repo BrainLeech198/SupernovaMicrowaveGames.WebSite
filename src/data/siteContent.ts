@@ -4,6 +4,7 @@ export interface GameProject {
   status: string;
   description?: string;
   image?: string;
+  imageAlt?: string;
   website?: string;
 }
 
@@ -21,6 +22,7 @@ export const games: GameProject[] = [
     status: "开发中",
     description: "以海岛为舞台的开放世界休闲游戏。",
     image: "game-art/shoreleave.webp",
+    imageAlt: "Shoreleave 游戏中的日落海岛景色",
   },
   {
     title: "Tomeisle Bay",
