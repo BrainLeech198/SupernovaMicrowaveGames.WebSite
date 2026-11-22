@@ -412,6 +412,11 @@ a:focus-visible {
   .studio { grid-template-columns: minmax(150px, 0.8fr) minmax(0, 1.3fr) 120px; gap: 18px; }
   .studio__mascot-button { width: min(100%, 120px); }
   .hero__panel { width: min(600px, 72%); }
+  .member-list__item { min-height: 152px; grid-template-columns: 30px 64px minmax(0,1fr); grid-template-rows: auto auto; gap: 8px 18px; padding-block: 14px; }
+  .member-list__index { grid-column: 1; grid-row: 1; padding-top: 4px; }
+  .member-list__mark { width: 64px; height: 64px; grid-column: 2; grid-row: 1; }
+  .member-list__name { grid-column: 3; grid-row: 1; min-width: 0; overflow-wrap: anywhere; }
+  .member-list__links { grid-column: 3; grid-row: 2; justify-self: start; }
 }
 @media (max-width: 680px) {
   html { scroll-padding-top: 0; }
