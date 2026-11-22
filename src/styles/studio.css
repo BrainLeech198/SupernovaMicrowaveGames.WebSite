@@ -98,6 +98,13 @@
   50% { transform: translateX(-12px) translateY(-5px) rotate(2deg) scaleY(1.03); }
 }
 
+@keyframes mascot-walk-journey {
+  0%, 100% { transform: translateX(-16px); }
+  50% { transform: translateX(16px); }
+}
+
+.studio__mascot-button[data-action="walk"] { animation: mascot-walk-journey .96s ease-in-out 1; }
+
 .studio__mascot-button[data-action="walk"] .studio__mascot {
   animation: mascot-walk-steps .32s steps(1, end) infinite, mascot-walk-bounce .64s ease-in-out infinite;
 }
@@ -128,8 +135,11 @@
 .studio__mascot-button:focus-visible .studio__mascot { transform: rotate(-3deg); }
 
 .studio__mascot-button:focus-visible {
-  outline: 3px solid var(--accent);
-  outline-offset: 3px;
+  outline: none;
+}
+
+.studio__mascot-button:focus-visible .studio__mascot {
+  filter: drop-shadow(0 0 3px var(--accent)) drop-shadow(0 0 8px rgba(248, 64, 16, 0.42));
 }
 
 .studio__reaction {

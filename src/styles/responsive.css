@@ -73,9 +73,14 @@
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
   .studio__mascot { animation: none; }
-  .studio__mascot-button[data-pose="walk"] .studio__mascot { background-position: 100% 0; transform: none; }
-  .studio__mascot-button[data-pose="surprised"] .studio__mascot { background-position: 50% 100%; transform: none; }
-  .studio__mascot-button[data-pose="celebrate"] .studio__mascot { background-position: 100% 100%; transform: none; }
+  .studio__mascot-button[data-action="walk"],
+  .studio__mascot-button[data-pose="walk"] { animation: none !important; transform: none; }
+  .studio__mascot-button[data-action="walk"] .studio__mascot,
+  .studio__mascot-button[data-pose="walk"] .studio__mascot { animation: none !important; background-position: 100% 0; transform: none; }
+  .studio__mascot-button[data-action="surprised"] .studio__mascot,
+  .studio__mascot-button[data-pose="surprised"] .studio__mascot { animation: none !important; background-position: 50% 100%; transform: none; }
+  .studio__mascot-button[data-action="celebrate"] .studio__mascot,
+  .studio__mascot-button[data-pose="celebrate"] .studio__mascot { animation: none !important; background-position: 100% 100%; transform: none; }
   .studio__mascot-button:hover .studio__mascot,
   .studio__mascot-button:focus-visible .studio__mascot { transform: none; }
 }
