@@ -17,7 +17,7 @@
 |---|---|
 | 页头 | 横向展示 SMG 标志、工作室中英文名称与游戏/成员/关于导航 |
 | 首屏 | 使用 Shoreleave 实际游戏画面作为横幅，显示作品名称、简介和游戏区入口 |
-| 工作室介绍 | 展示中文辅助字标、可点击的微波炉吉祥物与工作室简介 |
+| 工作室介绍 | 展示中文辅助字标、可点击的微波炉吉祥物与工作室简介；吉祥物有待机眨眼、走路、惊讶和庆祝姿势 |
 | 游戏作品 | Shoreleave 使用实际游戏画面展示带；Tomeisle Bay 使用深色文字展示带，两款都显示开发状态 |
 | 成员 | 深色品牌区只列成员账号及 GitHub / Gitee 个人主页 |
 | 页脚与版权声明 | 页脚提供版权入口，静态 `/copyright/` 页面列出三项品牌素材及其来源和使用边界 |
@@ -33,6 +33,7 @@
 - `src/data/siteContent.ts`：游戏和成员名单的类型化内容数据、已确认的游戏图路径及可选官网地址。
 - `src/styles/global.css`：色彩、排版、横幅与作品条目、响应式布局、键盘焦点和减少动态效果设置。
 - `public/game-art/shoreleave.webp`：由 `project/Shoreleave/asset/ui/tscn/menu/background.png` 转换的官网展示图，供横幅和缩略图共用。
+- `public/branding/supernova-microwave-mascot-sprites.png`：透明背景 3×2 吉祥物动作表，供待机、走路和表情动画使用。
 - `.github/workflows/deploy.yml`：`main` 更新时构建 Astro 并部署 Pages。
 
 新增或修改已确认的项目名称、简介、状态和官网地址时，编辑 `src/data/siteContent.ts`；给某款游戏填入 `website: "https://..."` 后，作品展示带自动成为可点击的官网入口。成员和个人主页入口也在这里维护。首屏文案编辑 `src/components/HeroSection.astro`，吉祥物互动在 `src/components/StudioSection.astro`，视觉调整编辑 `src/styles/global.css`。

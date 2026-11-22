@@ -178,8 +178,46 @@ a:focus-visible {
 .studio__mascot {
   display: block;
   width: 100%;
-  height: auto;
+  aspect-ratio: 1;
+  background-image: var(--mascot-sprites);
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: 300% 200%;
   transition: transform 180ms ease;
+  animation: mascot-blink 5.2s steps(1, end) infinite;
+}
+@keyframes mascot-blink {
+  0%, 38%, 42%, 78%, 82%, 100% { background-position: 0 0; }
+  40%, 80% { background-position: 50% 0; }
+}
+@keyframes mascot-walk-steps {
+  0%, 100% { background-position: 100% 0; }
+  50% { background-position: 0 100%; }
+}
+@keyframes mascot-walk-bounce {
+  0%, 100% { transform: translateX(0) translateY(0) rotate(-2deg) scaleY(.97); }
+  50% { transform: translateX(-12px) translateY(-5px) rotate(2deg) scaleY(1.03); }
+}
+.studio__mascot-button[data-action="walk"] .studio__mascot {
+  animation: mascot-walk-steps .32s steps(1, end) infinite, mascot-walk-bounce .64s ease-in-out infinite;
+}
+.studio__mascot-button[data-action="surprised"] .studio__mascot,
+.studio__mascot-button[data-pose="surprised"] .studio__mascot {
+  background-position: 50% 100%;
+  animation: mascot-surprise .28s ease-out both;
+}
+.studio__mascot-button[data-action="celebrate"] .studio__mascot,
+.studio__mascot-button[data-pose="celebrate"] .studio__mascot {
+  background-position: 100% 100%;
+  animation: mascot-celebrate .5s ease-in-out infinite alternate;
+}
+@keyframes mascot-surprise {
+  from { transform: scale(.92); }
+  to { transform: scale(1.08); }
+}
+@keyframes mascot-celebrate {
+  from { transform: rotate(-5deg) translateY(0); }
+  to { transform: rotate(5deg) translateY(-5px); }
 }
 .studio__mascot-button:hover .studio__mascot,
 .studio__mascot-button:focus-visible .studio__mascot { transform: rotate(-3deg); }
@@ -433,6 +471,10 @@ a:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+  .studio__mascot { animation: none; }
+  .studio__mascot-button[data-pose="walk"] .studio__mascot { background-position: 100% 0; transform: none; }
+  .studio__mascot-button[data-pose="surprised"] .studio__mascot { background-position: 50% 100%; transform: none; }
+  .studio__mascot-button[data-pose="celebrate"] .studio__mascot { background-position: 100% 100%; transform: none; }
   .studio__mascot-button:hover .studio__mascot,
   .studio__mascot-button:focus-visible .studio__mascot { transform: none; }
 }

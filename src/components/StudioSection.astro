@@ -17,48 +17,47 @@ const baseUrl = import.meta.env.BASE_URL.endsWith("/")
     <h2 id="studio-title">欢迎来到超新星微波</h2>
     <p>超新星微波（Supernova Microwave Games）是一家独立游戏工作室，正在开发 Shoreleave 与 Tomeisle Bay 两款原创游戏。</p>
   </div>
-  <button class="studio__mascot-button" type="button" aria-label="和微波炉吉祥物互动">
-    <img
+  <button class="studio__mascot-button" type="button" aria-label="点击和微波炉吉祥物玩耍" data-action="idle">
+    <span
       class="studio__mascot"
-      src={`${baseUrl}branding/supernova-microwave-mascot.png`}
-      alt=""
-      width="1254"
-      height="1254"
-      loading="lazy"
-    />
+      role="img"
+      aria-label="会眨眼、走路并变换表情的微波炉吉祥物"
+      style={`--mascot-sprites: url("${baseUrl}branding/supernova-microwave-mascot-sprites.png")`}
+    ></span>
     <span class="studio__reaction" aria-live="polite" aria-atomic="true"></span>
   </button>
 </section>
 
 <script>
   const mascotButton = document.querySelector<HTMLButtonElement>(".studio__mascot-button");
-  const mascotImage = mascotButton?.querySelector<HTMLImageElement>(".studio__mascot");
+  const mascotImage = mascotButton?.querySelector<HTMLElement>(".studio__mascot");
   const reaction = mascotButton?.querySelector<HTMLElement>(".studio__reaction");
-  let activeAnimation: Animation | undefined;
   let reactionTimer: number | undefined;
+  let reactionIndex = 0;
 
-  /** 播放一次吉祥物互动，并在动作结束后恢复静止状态。 */
+  /** 播放一次吉祥物互动，并在动作结束后恢复待机状态。 */
   function playMascotReaction(): void {
-    if (!mascotImage || !reaction) return;
+    if (!mascotButton || !mascotImage || !reaction) return;
 
-    activeAnimation?.cancel();
     window.clearTimeout(reactionTimer);
-    reaction.textContent = "叮！";
+    const actions = [
+      { name: "walk", text: "我来啦！" },
+      { name: "surprised", text: "咦？" },
+      { name: "celebrate", text: "好耶！" },
+    ];
+    const action = actions[reactionIndex % actions.length];
+    mascotButton.dataset.action = action.name;
+    reaction.textContent = action.text;
+    reactionIndex += 1;
     reactionTimer = window.setTimeout(() => {
       reaction.textContent = "";
+      mascotButton.dataset.action = "idle";
+      delete mascotButton.dataset.pose;
     }, 1200);
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    activeAnimation = mascotImage.animate(
-      [
-        { transform: "translateX(0) rotate(0deg)", offset: 0 },
-        { transform: "translateX(-12px) rotate(-6deg)", offset: 0.3 },
-        { transform: "translateX(10px) rotate(5deg)", offset: 0.65 },
-        { transform: "translateX(0) rotate(0deg)", offset: 1 },
-      ],
-      { duration: 720, easing: "ease-in-out" },
-    );
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      mascotImage.dataset.pose = action.name;
+    }
   }
 
   mascotButton?.addEventListener("click", playMascotReaction);
