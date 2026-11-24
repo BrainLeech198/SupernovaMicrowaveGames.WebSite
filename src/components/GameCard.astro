@@ -10,8 +10,8 @@ const { game } = Astro.props;
 ---
 
 <article class:list={["game-row", game.image ? "game-row--illustrated" : "game-row--type", game.website && "game-row--linked"]}>
-  <div class="game-row__art">
-    {game.image ? (
+  {game.image && (
+    <div class="game-row__art">
       <img
         class="game-row__image"
         src={withBasePath(game.image)}
@@ -20,24 +20,32 @@ const { game } = Astro.props;
         height="1440"
         loading="lazy"
       />
-    ) : (
-      <span class="game-row__monogram" aria-hidden="true">TB</span>
-    )}
-  </div>
+    </div>
+  )}
   <div class="game-row__content">
-    <p class="game-row__kicker">原创游戏</p>
     <div class="game-row__title">
-      <h3>{game.title}</h3>
-      {game.subtitle && <p class="game-row__subtitle">{game.subtitle}</p>}
+      {game.logo && (
+        <img
+          class="game-row__logo"
+          src={withBasePath(game.logo)}
+          alt=""
+          aria-hidden="true"
+          width="112"
+          height="112"
+          loading="lazy"
+        />
+      )}
+      <div class="game-row__heading">
+        <h3>{game.title}</h3>
+        {game.subtitle && <p class="game-row__subtitle">{game.subtitle}</p>}
+      </div>
     </div>
     {game.description && <p class="game-row__description">{game.description}</p>}
   </div>
   <div class="game-row__aside">
     <p class="game-row__status"><span aria-hidden="true"></span>{game.status}</p>
     {game.website && (
-      <a class="game-row__link" href={game.website} aria-label={`前往 ${game.title} 官网`}>
-        访问官网 <span aria-hidden="true">↗</span>
-      </a>
+      <a class="game-row__link" href={game.website} aria-label={`前往 ${game.title} 官网`}>访问官网</a>
     )}
   </div>
 </article>

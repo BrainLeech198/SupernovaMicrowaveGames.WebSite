@@ -3,6 +3,7 @@ export interface GameProject {
   subtitle?: string;
   status: string;
   description?: string;
+  logo?: string;
   image?: string;
   imageAlt?: string;
   website?: string;
@@ -21,6 +22,7 @@ export const games: GameProject[] = [
     subtitle: "上岸休假",
     status: "开发中",
     description: "以海岛为舞台的开放世界休闲游戏。",
+    logo: "game-art/shoreleave-icon.png",
     image: "game-art/shoreleave.webp",
     imageAlt: "Shoreleave 的海岛日落视觉概念图，不是游戏实机画面",
     website: "https://brainleech198.github.io/SupernovaMicrowaveGames.WebSite/shoreleave/",

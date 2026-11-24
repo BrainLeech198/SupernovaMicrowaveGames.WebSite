@@ -14,14 +14,13 @@ const { members } = Astro.props;
       <h2 id="members-title">工作室成员</h2>
     </header>
     <ul class="member-list">
-      {members.map((member, index) => (
+      {members.map((member) => (
         <li class="member-list__item">
-          <span class="member-list__index">{String(index + 1).padStart(2, "0")}</span>
           <img class="member-list__mark" src={member.avatar} alt={`${member.name} 的 GitHub 头像`} width="256" height="256" loading="lazy" />
           <span class="member-list__name">{member.name}</span>
           <nav class="member-list__links" aria-label={`${member.name} 的个人主页`}>
-            <a href={member.github} target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
-            <a href={member.gitee} target="_blank" rel="noreferrer">Gitee <span aria-hidden="true">↗</span></a>
+            <a href={member.github} target="_blank" rel="noreferrer">GitHub</a>
+            <a href={member.gitee} target="_blank" rel="noreferrer">Gitee</a>
           </nav>
         </li>
       ))}
